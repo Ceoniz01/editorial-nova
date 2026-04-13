@@ -1,41 +1,13 @@
 <template>
-  <div class="container">
-    <!-- título -->
-    <h1>BookList</h1>
+  <div>
+    <!-- menú simple -->
+    <nav>
+      <router-link to="/">Inicio</router-link> |
+      <router-link to="/libros">Libros</router-link>
+    </nav>
 
-    <!-- nombre -->
-    <p>Hola, {{ nombre }}</p>
-    <input v-model="nombre" placeholder="Escribe tu nombre" />
-
-    <!-- contador -->
-    <h2>Contador: {{ contador }}</h2>
-    <button @click="sumar">Sumar</button>
-    <button @click="restar">Restar</button>
-
-    <!-- lista de libros -->
-    <h2>Lista de libros</h2>
-
-    <!-- formulario -->
-    <h3>Agregar libro</h3>
-
-    <!-- input título -->
-    <input v-model="nuevoTitulo" placeholder="Título" />
-
-    <!-- input autor -->
-    <input v-model="nuevoAutor" placeholder="Autor" />
-
-    <!-- botón agregar -->
-    <button @click="agregarLibro">Agregar</button>
-
-    <!-- mensaje si no hay libros -->
-    <p v-if="libros.length === 0">No hay libros disponibles</p>
-
-    <!-- listado -->
-    <ul>
-      <li v-for="(libro, index) in libros" :key="index">
-        {{ libro.titulo }} - {{ libro.autor }}
-      </li>
-    </ul>
+    <!-- aquí se cargan las vistas -->
+    <router-view />
   </div>
 </template>
 
@@ -50,12 +22,6 @@ export default {
 
       // contador
       contador: 0,
-
-      // lista de libros
-      libros: [
-        { titulo: "Harry Potter", autor: "J.K. Rowling" },
-        { titulo: "El Señor de los Anillos", autor: "Tolkien" },
-      ],
 
       // nuevo libro
       nuevoTitulo: "",
@@ -86,7 +52,12 @@ export default {
         this.nuevoAutor = "";
       }
     },
-  },
+
+    // eliminar libro
+    eliminarLibro(index) {
+      this.libros.splice(index, 1);
+    }
+  }
 };
 </script>
 
