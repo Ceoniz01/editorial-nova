@@ -15,6 +15,18 @@
     <!-- lista de libros -->
     <h2>Lista de libros</h2>
 
+    <!-- formulario -->
+    <h3>Agregar libro</h3>
+
+    <!-- input título -->
+    <input v-model="nuevoTitulo" placeholder="Título" />
+
+    <!-- input autor -->
+    <input v-model="nuevoAutor" placeholder="Autor" />
+
+    <!-- botón agregar -->
+    <button @click="agregarLibro">Agregar</button>
+
     <!-- mensaje si no hay libros -->
     <p v-if="libros.length === 0">No hay libros disponibles</p>
 
@@ -44,6 +56,10 @@ export default {
         { titulo: "Harry Potter", autor: "J.K. Rowling" },
         { titulo: "El Señor de los Anillos", autor: "Tolkien" },
       ],
+
+      // nuevo libro
+      nuevoTitulo: "",
+      nuevoAutor: "",
     };
   },
 
@@ -56,6 +72,19 @@ export default {
     // restar contador
     restar() {
       this.contador--;
+    },
+
+    // agregar libro
+    agregarLibro() {
+      if (this.nuevoTitulo && this.nuevoAutor) {
+        this.libros.push({
+          titulo: this.nuevoTitulo,
+          autor: this.nuevoAutor,
+        });
+
+        this.nuevoTitulo = "";
+        this.nuevoAutor = "";
+      }
     },
   },
 };
