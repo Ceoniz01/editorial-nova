@@ -1,76 +1,69 @@
 <template>
-  <div>
-    <!-- menú simple -->
-    <nav>
-      <router-link to="/">Inicio</router-link> |
-      <router-link to="/libros">Libros</router-link>
+  <div class="app">
+
+    <!-- contenido -->
+    <div class="content">
+      <router-view />
+    </div>
+
+    <!-- menú inferior -->
+    <nav class="bottom-nav">
+      <router-link to="/" class="btn">Inicio</router-link>
+      <router-link to="/libros" class="btn">Libros</router-link>
     </nav>
 
-    <!-- aquí se cargan las vistas -->
-    <router-view />
   </div>
 </template>
 
 <script>
 export default {
   name: "App",
-
-  data() {
-    return {
-      // nombre usuario
-      nombre: "",
-
-      // contador
-      contador: 0,
-
-      // nuevo libro
-      nuevoTitulo: "",
-      nuevoAutor: "",
-    };
-  },
-
-  methods: {
-    // sumar contador
-    sumar() {
-      this.contador++;
-    },
-
-    // restar contador
-    restar() {
-      this.contador--;
-    },
-
-    // agregar libro
-    agregarLibro() {
-      if (this.nuevoTitulo && this.nuevoAutor) {
-        this.libros.push({
-          titulo: this.nuevoTitulo,
-          autor: this.nuevoAutor,
-        });
-
-        this.nuevoTitulo = "";
-        this.nuevoAutor = "";
-      }
-    },
-
-    // eliminar libro
-    eliminarLibro(index) {
-      this.libros.splice(index, 1);
-    }
-  }
 };
 </script>
 
 <style>
-/* contenedor */
-.container {
+/* fondo general */
+.app {
+  min-height: 100vh;
+  background: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+/* contenido centrado */
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   padding: 20px;
-  font-family: Arial;
+}
+
+/* menú inferior */
+.bottom-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px;
+  border-top: 1px solid #ddd;
+  background: white;
+  position: sticky;
+  bottom: 0;
 }
 
 /* botones */
-button {
-  margin: 5px;
-  padding: 10px;
+.btn {
+  background: #1e88e5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #1565c0;
 }
 </style>
