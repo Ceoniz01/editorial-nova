@@ -3,20 +3,27 @@
     <!-- título -->
     <h1>BookList</h1>
 
-    <!-- nombre del usuario -->
+    <!-- nombre -->
     <p>Hola, {{ nombre }}</p>
-
-    <!-- input -->
     <input v-model="nombre" placeholder="Escribe tu nombre" />
 
     <!-- contador -->
     <h2>Contador: {{ contador }}</h2>
-
-    <!-- botón sumar -->
     <button @click="sumar">Sumar</button>
-
-    <!-- botón restar -->
     <button @click="restar">Restar</button>
+
+    <!-- lista de libros -->
+    <h2>Lista de libros</h2>
+
+    <!-- mensaje si no hay libros -->
+    <p v-if="libros.length === 0">No hay libros disponibles</p>
+
+    <!-- listado -->
+    <ul>
+      <li v-for="(libro, index) in libros" :key="index">
+        {{ libro.titulo }} - {{ libro.autor }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -31,6 +38,12 @@ export default {
 
       // contador
       contador: 0,
+
+      // lista de libros
+      libros: [
+        { titulo: "Harry Potter", autor: "J.K. Rowling" },
+        { titulo: "El Señor de los Anillos", autor: "Tolkien" },
+      ],
     };
   },
 
